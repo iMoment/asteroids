@@ -10,6 +10,8 @@ def main():
     print(f"Screen height: {SCREEN_HEIGHT}")
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    clock = pygame.time.Clock()
+    dt = 0
 
     while True:
        for event in pygame.event.get():
@@ -18,6 +20,7 @@ def main():
            
        screen.fill("black")
        pygame.display.flip()
+       dt = clock.tick(60) / 1000
 
 # ensures main() function is only called when file run directly
 # won't run if it's imported as a module
