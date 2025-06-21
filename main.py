@@ -34,23 +34,30 @@ def main():
     dt = 0
 
     while True:
-       for event in pygame.event.get():
-           if event.type == pygame.QUIT:
-               return
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return
 
-       updatable.update(dt) 
-       for asteroid in asteroids:
-           if asteroid.is_colliding_with(player_1):
-               sys.exit("Game over!")
+        updatable.update(dt) 
 
-       screen.fill("black")
+        # collision for player and an asteroid
+        for asteroid in asteroids:
+            if asteroid.is_colliding_with(player_1):
+                sys.exit("Game over!")
+            # collision for shot and an asteroid
+            for shot in shots:
+               if shot.is_colliding_with(asteroid):
+                   shot.kill()
+                   asteroid.kill()
+
+        screen.fill("black")
        
-       for item in drawable:
-           item.draw(screen)
+        for item in drawable:
+            item.draw(screen)
 
-       pygame.display.flip()
+        pygame.display.flip()
 
-       dt = clock.tick(60) / 1000
+        dt = clock.tick(60) / 1000
 
 # ensures main() function is only called when file run directly
 # won't run if it's imported as a module
