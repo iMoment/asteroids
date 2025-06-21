@@ -8,6 +8,16 @@ def main():
     print("Starting Asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
+    pygame.init()
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
+    while True:
+       for event in pygame.event.get():
+           if event.type == pygame.QUIT:
+               return
+           
+       screen.fill("black")
+       pygame.display.flip()
 
 # ensures main() function is only called when file run directly
 # won't run if it's imported as a module
